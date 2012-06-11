@@ -23,9 +23,22 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   When I follow "Movie Title"
+  And R is checked
+  And PG-13 is checked
+  Then I should see /[Amelie]*[Chocolat]/
   # your steps here
 
 Scenario: sort movies in increasing order of release date
-  When i follow "Release Date"
+  When I follow "Release Date"
+  And I check the following ratings: R,G,PG-13
+  And I press "Refresh"
+  Then I should see /[Chocolat]*[Amelie]/
+  # your steps here
+  
+Scenario: filter movies by rating
+  When I check the following ratings: R,G,PG-13
+  And I press "Refresh"
+  Then I should see "Chocolat" 
+  And I should see "Amelie"
   # your steps here
 
