@@ -56,11 +56,12 @@ When /^(?:|I ) follow "(.+)"$/ do |link|
 end
 
 Then /^I should see all of the movies$/ do
-  page.all('table#movies tr').count == 10 # express the regexp above with the code you wish you had
+  #p (page.all('table#movies tr').count == 11)
+  assert (page.all('table#movies tr').count == 11) # express the regexp above with the code you wish you had
 end
 
 Then /^I should see no movies$/ do
-  page.all('table#movies tr').count == 0 # express the regexp above with the code you wish you had
+  assert page.all('table#movies tr').count == 1 # express the regexp above with the code you wish you had
 end
 
 #When /^(?:|I ) follow "Release Date"$/ do |link|
