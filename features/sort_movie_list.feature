@@ -25,7 +25,7 @@ Scenario: sort movies alphabetically
   When I follow "Movie Title"
   And R is checked
   And PG-13 is checked
-  Then I should see /[Amelie]*[Chocolat]/
+  Then I should see "Amelie" before "Chocolat"
   # your steps here
 
 Scenario: sort movies in increasing order of release date

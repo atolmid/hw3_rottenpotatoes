@@ -18,8 +18,10 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #else
   #i  = page.should contain(e1)
   #puts page.body
-  e = /(.*)/
-  assert page.should have_content("#{e1}"+"#{e}"+"#{e2}")
+  regexp = Regexp.new "[#{e1}]*[#{e2}]"
+  #print "I am here4!"
+  #print page.should have_content("#{e1}"+"#{e}"+"#{e2}") 
+  assert page.body =~ regexp
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
   #flunk "Unimplemented"
@@ -29,9 +31,13 @@ end
 Then /^(?:|I )should see "(.*)"$/ do |text|
   #puts page.body
   #save_and_open_page
+  
+  #print page.should have_content(text)
   if page.respond_to? :should
-    page.should have_content(text)
+    #print "I am here1!"
+    assert page.should have_content(text)
   else
+    #print "I am here!"
     assert page.has_content?(text)
   end
 end
@@ -40,8 +46,10 @@ Then /^(?:|I )should not see "(.*)"$/ do |text|
   #puts page.body
   #save_and_open_page
   if page.respond_to? :should
-    page.should_not have_content(text)
+  #print "I am here2!"
+    assert page.should_not have_content(text)
   else
+    #print "I am here3!"
     assert page.has_no_content?(text)
   end
 end
