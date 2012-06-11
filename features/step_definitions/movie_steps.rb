@@ -19,7 +19,7 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #i  = page.should contain(e1)
   #puts page.body
   e = /(.*)/
-  page.should have_content("#{e1}"+"#{e}"+"#{e2}")
+  assert page.should have_content("#{e1}"+"#{e}"+"#{e2}")
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
   #flunk "Unimplemented"
