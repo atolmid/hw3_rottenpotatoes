@@ -23,22 +23,24 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   When I follow "Movie Title"
-  And R is checked
-  And PG-13 is checked
+  And I check the following ratings: R,PG-13
+  And I press "Refresh"
+  #Then I should see "Chicken Run" before "The Terminator"
   Then I should see "Amelie" before "Chocolat"
+  #And I should see "Chocolat" before "Amelie"
   # your steps here
 
 Scenario: sort movies in increasing order of release date
   When I follow "Release Date"
   And I check the following ratings: R,G,PG-13
   And I press "Refresh"
-  Then I should see /[Chocolat]*[Amelie]/
+  Then I should see "Chocolat" before "Amelie"
   # your steps here
   
 Scenario: filter movies by rating
   When I check the following ratings: R,G,PG-13
   And I press "Refresh"
-  Then I should see "Chocolat" 
-  And I should see "Amelie"
+  Then I should view "Chocolat" 
+  And I should view "Amelie"
   # your steps here
 

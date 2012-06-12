@@ -18,17 +18,21 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #else
   #i  = page.should contain(e1)
   #puts page.body
-  regexp = Regexp.new "[#{e1}]*[#{e2}]"
-  #print "I am here4!"
+  #regexp = Regexp.new "#{e1}"
+  print "I am here4!"
   #print page.should have_content("#{e1}"+"#{e}"+"#{e2}") 
-  assert page.body =~ regexp
+  #print regexp
+  #puts page.body
+  assert (page.body =~ /#{e1}(.*)#{e2}/m)
+  #puts (page.body =~ /#{e2}/)
+  #assert page.body =~ regexp
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
   #flunk "Unimplemented"
   #end
 end
 
-Then /^(?:|I )should see "(.*)"$/ do |text|
+Then /^(?:|I )should view "(.*)"$/ do |text|
   #puts page.body
   #save_and_open_page
   
